@@ -1,7 +1,506 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "angular-mfe": {
+      "projectType": "application",
+      "root": "apps/angular-mfe",
+      "sourceRoot": "apps/angular-mfe/src",
+      "prefix": "multi-framework-mfe-nx",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/angular-mfe",
+            "index": "apps/angular-mfe/src/index.html",
+            "main": "apps/angular-mfe/src/main.ts",
+            "polyfills": "apps/angular-mfe/src/polyfills.ts",
+            "tsConfig": "apps/angular-mfe/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/angular-mfe/src/favicon.ico",
+              "apps/angular-mfe/src/assets"
+            ],
+            "styles": ["apps/angular-mfe/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/angular-mfe/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/angular-mfe/src/environments/environment.ts",
+                  "with": "apps/angular-mfe/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/angular-mfe/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "angular-mfe:build:production"
+            },
+            "development": {
+              "browserTarget": "angular-mfe:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4201
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "angular-mfe:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/angular-mfe/src/**/*.ts",
+              "apps/angular-mfe/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/angular-mfe"],
+          "options": {
+            "jestConfig": "apps/angular-mfe/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "angular-mfe-e2e": {
+      "root": "apps/angular-mfe-e2e",
+      "sourceRoot": "apps/angular-mfe-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/angular-mfe-e2e/cypress.json",
+            "devServerTarget": "angular-mfe:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-mfe:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/angular-mfe-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "angular-shell": {
+      "projectType": "application",
+      "root": "apps/angular-shell",
+      "sourceRoot": "apps/angular-shell/src",
+      "prefix": "multi-framework-mfe-nx",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/angular-shell",
+            "index": "apps/angular-shell/src/index.html",
+            "main": "apps/angular-shell/src/main.ts",
+            "polyfills": "apps/angular-shell/src/polyfills.ts",
+            "tsConfig": "apps/angular-shell/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/angular-shell/src/favicon.ico",
+              "apps/angular-shell/src/assets"
+            ],
+            "styles": ["apps/angular-shell/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/angular-shell/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/angular-shell/src/environments/environment.ts",
+                  "with": "apps/angular-shell/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/angular-shell/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "angular-shell:build:production"
+            },
+            "development": {
+              "browserTarget": "angular-shell:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {}
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "angular-shell:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/angular-shell/src/**/*.ts",
+              "apps/angular-shell/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/angular-shell"],
+          "options": {
+            "jestConfig": "apps/angular-shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "serve-mfe": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx serve angular-mfe", "nx serve angular-shell"]
+          }
+        }
+      }
+    },
+    "angular-shell-e2e": {
+      "root": "apps/angular-shell-e2e",
+      "sourceRoot": "apps/angular-shell-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/angular-shell-e2e/cypress.json",
+            "devServerTarget": "angular-shell:serve:development",
+            "tsConfig": "apps/angular-shell-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-shell:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/angular-shell-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "react-mfe": {
+      "root": "apps/react-mfe",
+      "sourceRoot": "apps/react-mfe/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/react-mfe",
+            "index": "apps/react-mfe/src/index.html",
+            "main": "apps/react-mfe/src/main.tsx",
+            "polyfills": "apps/react-mfe/src/polyfills.ts",
+            "tsConfig": "apps/react-mfe/tsconfig.app.json",
+            "assets": [
+              "apps/react-mfe/src/favicon.ico",
+              "apps/react-mfe/src/assets"
+            ],
+            "styles": ["apps/react-mfe/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/react-mfe/src/environments/environment.ts",
+                  "with": "apps/react-mfe/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "react-mfe:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "react-mfe:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/react-mfe/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/react-mfe"],
+          "options": {
+            "jestConfig": "apps/react-mfe/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "react-mfe-e2e": {
+      "root": "apps/react-mfe-e2e",
+      "sourceRoot": "apps/react-mfe-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/react-mfe-e2e/cypress.json",
+            "devServerTarget": "react-mfe:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "react-mfe:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/react-mfe-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "react-shell": {
+      "root": "apps/react-shell",
+      "sourceRoot": "apps/react-shell/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/react-shell",
+            "index": "apps/react-shell/src/index.html",
+            "main": "apps/react-shell/src/main.tsx",
+            "polyfills": "apps/react-shell/src/polyfills.ts",
+            "tsConfig": "apps/react-shell/tsconfig.app.json",
+            "assets": [
+              "apps/react-shell/src/favicon.ico",
+              "apps/react-shell/src/assets"
+            ],
+            "styles": ["apps/react-shell/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/react-shell/src/environments/environment.ts",
+                  "with": "apps/react-shell/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "react-shell:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "react-shell:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/react-shell/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/react-shell"],
+          "options": {
+            "jestConfig": "apps/react-shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "react-shell-e2e": {
+      "root": "apps/react-shell-e2e",
+      "sourceRoot": "apps/react-shell-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/react-shell-e2e/cypress.json",
+            "devServerTarget": "react-shell:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "react-shell:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/react-shell-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    },
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "angular-shell"
 }
