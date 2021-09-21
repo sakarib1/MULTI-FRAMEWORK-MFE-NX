@@ -14,12 +14,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -31,5 +26,34 @@
       }
     ]
   },
-  "projects": {}
+  "projects": {
+    "angular-mfe": {
+      "tags": []
+    },
+    "angular-mfe-e2e": {
+      "tags": [],
+      "implicitDependencies": ["angular-mfe"]
+    },
+    "angular-shell": {
+      "tags": []
+    },
+    "angular-shell-e2e": {
+      "tags": [],
+      "implicitDependencies": ["angular-shell"]
+    },
+    "react-mfe": {
+      "tags": []
+    },
+    "react-mfe-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-mfe"]
+    },
+    "react-shell": {
+      "tags": []
+    },
+    "react-shell-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-shell"]
+    }
+  }
 }
